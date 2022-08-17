@@ -1,0 +1,25 @@
+{
+  "name": "monitored-object-js",
+  "version": "1.0.0",
+  "description": "The javascript version of the monitored object.  A monitored object writes status data to a database periodically.",
+  "main": "MonitoredObject.js",
+  "module": "MonitoredObject.js",
+  "scripts": {
+    "test": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EGAdams/monitored-object-js.git"
+  },
+  "keywords": [
+    "monitor",
+    "debug",
+    "test"
+  ],
+  "author": "EG Adams",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EGAdams/monitored-object-js/issues"
+  },
+  "homepage": "https://github.com/EGAdams/monitored-object-js#readme"
+}
