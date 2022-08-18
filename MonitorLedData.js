@@ -8,3 +8,5 @@ class MonitorLedData {
     }
 
 }
+
+export default MonitorLedData;

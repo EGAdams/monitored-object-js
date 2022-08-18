@@ -7,3 +7,5 @@ class MonitorLedClassObject {
         this.margin_top       = "2px";
         this.color            = "black"; }
 }
+
+export default MonitorLedClassObject;

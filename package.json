@@ -4,6 +4,7 @@
   "description": "The javascript version of the monitored object.  A monitored object writes status data to a database periodically.",
   "main": "MonitoredObject.js",
   "module": "MonitoredObject.js",
+  "type": "module",
   "scripts": {
     "test": "none"
   },
@@ -21,5 +22,9 @@
   "bugs": {
     "url": "https://github.com/EGAdams/monitored-object-js/issues"
   },
-  "homepage": "https://github.com/EGAdams/monitored-object-js#readme"
+  "homepage": "https://github.com/EGAdams/monitored-object-js#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "undici": "^5.9.1"
+  }
 }

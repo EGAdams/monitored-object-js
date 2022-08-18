@@ -1,11 +1,9 @@
-import DataSource from './DataSource.js';
-
-let DataSourceFactory = (function(){
+let ConfigurationManager = (function( config ){
     let instance;
     return {
         getInstance: function(){
             if (instance == null) {
-                instance = new DataSource();
+                instance = MonitoredObjectConfig( config );
                 // Hide the constructor so the returned object can't be new'd...
                 instance.constructor = null;
             }
@@ -14,4 +12,4 @@ let DataSourceFactory = (function(){
    };
 })();
 
-export default DataSourceFactory;
+export default ConfigurationManager;

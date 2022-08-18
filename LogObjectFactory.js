@@ -5,8 +5,6 @@
  * @class LogObjectFactory
  */
  class LogObjectFactory {
-    constructor() { console.log( 'constructing LogObjectFactory object...' ); }
-
     createLogObject( messageArg, someObject ) {
         const time_now = Date.now();
         const random_number = Math.floor( Math.random() * 10000000000000 );
@@ -25,3 +23,5 @@
         return obj.stack.split( '\n' )[ 4 ].match( /at\s+\w+.(\w+)/ )[ 1 ];
     }
 }
+
+export default LogObjectFactory;
