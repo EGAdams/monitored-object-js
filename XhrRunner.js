@@ -1,7 +1,7 @@
 /** @class XhrRunner class */
 class XhrRunner {
     constructor() {  // establish communication address
-        this.url = "https://mycustombusinessapp.com/wp-content/plugins/MCBA-Wordpress/runQuery.php"; } 
+        this.url = ""; } 
 
         async runQuery ( apiArgs ) {
             const xhr = new XMLHttpRequest();
