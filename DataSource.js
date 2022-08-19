@@ -1,27 +1,27 @@
-import axios from 'axios';
 /** @class DataSource class */
  class DataSource {
     constructor( config ) { this.url = config.getUrl(); } // establish communication address
         
-    async runQuery( apiArgs ) {  // request data, redirect result.
-        const headers = {
-            "Content-Type": "application/json",
-        }
-        const data = {
-            "query": apiArgs.query,
-            "queryResultProcessor": apiArgs.queryResultProcessor,
-            "data": apiArgs.data
-        }
-
-        axios.post( this.url, { "sql": apiArgs.query })
-        .then(async (res) => {
-            console.log( " res.data [" + res.data + "]" );
-            apiArgs.queryResultProcessor.processQueryResult( res.data );
-        })
-        .catch((err) => {
-            console.log(err);
+    postFetchTest = async ( object_id_arg ) => { // request data, redirect result.
+        const data = object_id_arg;
+        const res = await fetch( this.url, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', // include, *same-origin, omit
+            headers: {
+                // 'Content-Type': 'application/json'
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            redirect: 'follow', // manual, *follow, error
+            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            body: "sql=" + JSON.stringify( data ) // body data type must match "Content-Type" header
+            
         });
-    }    
+        console.log( res );
+        const json = await res;
+        console.log( json );
+    }; 
 }
 
 export default DataSource;
