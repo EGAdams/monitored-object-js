@@ -1,27 +1,19 @@
 /** @class DataSource class */
- class DataSource {
-    constructor( config ) { this.url = config.getUrl(); } // establish communication address
-        
-    postFetchTest = async ( object_id_arg ) => { // request data, redirect result.
-        const data = object_id_arg;
-        const res = await fetch( this.url, {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            mode: 'cors', // no-cors, *cors, same-origin
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'same-origin', // include, *same-origin, omit
-            headers: {
-                // 'Content-Type': 'application/json'
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            redirect: 'follow', // manual, *follow, error
-            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            body: "sql=" + JSON.stringify( data ) // body data type must match "Content-Type" header
-            
-        });
-        console.log( res );
-        const json = await res;
-        console.log( json );
-    }; 
+class DataSource {
+    constructor(config) { this.url = config.getUrl(); } // establish communication address
+
+    async getObjects() {  // copilot wrote most of this.
+        fetch( this.url )
+            .then((response) => {
+                response.text().then((text) => {
+                    console.log( "text: " + text );
+                });
+            }).catch((error) => {
+                console.log( "error: " + error.text );
+            }).then(() => {
+                console.log( "done" );
+            });
+    }
 }
 
 export default DataSource;
