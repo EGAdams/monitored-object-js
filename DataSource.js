@@ -8,7 +8,7 @@ class DataSource {
             .then((response) => {
                 response.json().then(( result ) => {
                     console.log( "result: " + result );
-                    console.log( "processing text with [ " + this.resultProcessor + " ]" );
+                    // console.log( "processing text with [ " + this.resultProcessor + " ]" );
                 });
             }).catch((error) => {
                 console.log( "error: " + error.stack );
@@ -33,6 +33,8 @@ class DataSource {
             response.json().then(( result ) => {
                 console.log( "result: " + result );
                 // console.log( "processing text with [ " + this.resultProcessor + " ]" );
+            }).catch(( error ) => { 
+                console.log( "error: " + error.stack ); 
             });
         }).catch((error) => {
             console.log( "error: " + error.stack );
