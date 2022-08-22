@@ -6,7 +6,7 @@ class DataSource {
         this.resultProcessor = resultProcessorArg;
         fetch( this.url )
             .then((response) => {
-                response.text().then(( result ) => {
+                response.json().then(( result ) => {
                     console.log( "result: " + result );
                     console.log( "processing text with [ " + this.resultProcessor + " ]" );
                 });
@@ -30,17 +30,14 @@ class DataSource {
                 object_data: object_data_arg
             })
         }).then((response) => {
-            response.text().then(( result ) => {
+            response.json().then(( result ) => {
                 console.log( "result: " + result );
-            }).catch((error) => {
-                console.log( "error: " + error.stack );
-            }).then(() => {
-                console.log( "done" );
-            }).catch((error) => {
-                console.log( "error: " + error.stack );
+                // console.log( "processing text with [ " + this.resultProcessor + " ]" );
             });
         }).catch((error) => {
             console.log( "error: " + error.stack );
+        }).then(() => {
+            console.log( "done" );
         });
     }
 }
