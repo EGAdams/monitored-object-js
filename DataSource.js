@@ -10,12 +10,13 @@ class DataSource {
             .catch(( error    ) => { console.log( "error: " + error.stack ); })
             .then(()            => { console.log( "done" );                  }); }
 
-    async insertObject( object_view_id_arg, object_data_arg ) {
-        console.log( "insertObject: " + object_view_id_arg + " " + object_data_arg );
+    async insertObject( new_monitored_object ) {
+        console.log( "insertObject: " + new_monitored_object.getMonitorId());
         fetch( this.url, {
             method: 'POST',
             headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-            body: JSON.stringify({ object_view_id: object_view_id_arg, object_data: object_data_arg })
+            body: JSON.stringify({ object_view_id: new_monitored_object.getMonitorId(), 
+                                   object_data: new_monitored_object })
         }).then((response) => {
             response.json().then(( result ) => {
                 console.log( "result: " + result );
