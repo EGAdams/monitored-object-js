@@ -6,7 +6,7 @@ import DataSource from "./DataSource.js";
 /** @class  MonitoredObject */
 export default class MonitoredObject {
     constructor( config ) {
-        this.construction_name = "ChatRouter"; // this.constructor.name;
+        this.construction_name = this.constructor.name;
         this.logObjects        = [];
         this.logObjectFactory  = new LogObjectFactory();
         this.monitorLedData    = new MonitorLedData(); 
