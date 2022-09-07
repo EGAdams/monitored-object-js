@@ -33,7 +33,6 @@ export default class MonitoredObject {
     log( message ) { console.log( message ); }
     getMonitorId() { return this.construction_name + "_" + this.object_id; }
     setMonitorId( newId ) { 
-        if ( this.construction_name.includes( "_" )) { debugger; }
         this.object_id = newId;
         this.object_view_id = this.construction_name + "_" + newId; 
         let tableManager = new TableManager( this.dataSource, this.object_view_id );
