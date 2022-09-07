@@ -1,13 +1,15 @@
 import LogObjectFactory from "./LogObjectFactory.js";
-import MonitorLedData from "./MonitorLedData.js";
+import MonitorLedData   from "./MonitorLedData.js";
+import SourceData       from "./SourceData.js";
+import Model            from "./Model.js"; 
 /** @class  MonitoredObject */
 export default class MonitoredObject {
     constructor( config ) {
         this.construction_name = this.constructor.name;
         this.logObjects        = [];
-        this.model             = new Model(); 
+        this.model             = new Model( new SourceData( config  )); 
         this.logObjectFactory  = new LogObjectFactory();
-        this.monitorLedData    = new MonitorLedData(); }   // lightred is not understood by CSS.  Whaaa... ??
+        this.monitorLedData    = new MonitorLedData(); }
 
     logUpdate( message ) {
         if ( !this.object_id ) {  console.log( "*** ERROR: object needs an id to log. ***" ); return; }
@@ -27,7 +29,7 @@ export default class MonitoredObject {
     setMonitorId( newId ) { 
         this.object_id = newId;
         this.object_view_id = this.construction_name + "_" + newId; 
-        let data_config = { object_view_id: this.object_view_id, object_id: this.object_view_id };
+        let data_config = { object_view_id: this.object_view_id, object_data: JSON.stringify( this )};
         this.model.insertObject( data_config, this.processQueryResult ); }
 
     setLedBackgroundColor( newColor ) { this.monitorLedData.classObject.background_color = newColor; }
