@@ -1,10 +1,11 @@
 /** @class TableManager */
 class TableManager {
-    constructor( dataSourceArg, object_id_arg ) { 
-        this.object_id = object_id_arg;
-        this.dataSource = dataSourceArg; }
-
-    createObjectRow( newMonitoredObject ) { this.dataSource.insertObject( this.object_id, newMonitoredObject ); }    
+    constructor( newMonitoredObject, dataSourceArg ) { 
+        this.monitoredObect = newMonitoredObject; 
+        this.dataSource     = dataSourceArg;
+        this.dataSource.insertObject( newMonitoredObject )  }
+        
+    update() { this.dataSource.updateMonitoredObject( this.monitoredObect ); }
 }
 
 export default TableManager;
