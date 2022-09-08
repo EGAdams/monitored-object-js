@@ -1,9 +1,8 @@
 /** @class XhrRunner class */
 class XhrRunner {
-    constructor() {  // establish communication address
-        this.url = ""; } 
-
-        async runQuery ( apiArgs ) {
+    constructor( config ) { 
+        this.url = config.api_path; } // establish communication address
+        async run( apiArgs ) {
             const xhr = new XMLHttpRequest();
             xhr.open( "POST", this.url, true );
             xhr.setRequestHeader( "Content-Type", "application/x-www-form-urlencoded" ); // allows "sql="... syntax!
@@ -25,8 +24,6 @@ class XhrRunner {
                     console.log( "xhr.status: " + xhr.status );
                 }
             };
-            xhr.send( "sql=" + apiArgs.query );
+            xhr.send( /* "sql=" + apiArgs.query */ );
         }
 }
-
-export default XhrRunner;

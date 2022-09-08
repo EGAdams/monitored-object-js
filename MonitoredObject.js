@@ -1,38 +1,27 @@
 import LogObjectFactory from "./LogObjectFactory.js";
-import MonitorLedData   from "./MonitorLedData.js";
+import MonitorLed       from "./MonitorLed.js";
 import SourceData       from "./SourceData.js";
 import Model            from "./Model.js"; 
 /** @class  MonitoredObject */
 export default class MonitoredObject {
     constructor( config ) {
-        this.construction_name = this.constructor.name;
+        this.object_view_id    = this.constructor.name + "_" + config.new_id ;
         this.logObjects        = [];
-        this.model             = new Model( new SourceData( config  )); 
+        this.model             = new Model( new SourceData( config )); 
         this.logObjectFactory  = new LogObjectFactory();
-        this.monitorLedData    = new MonitorLedData(); }
+        this.monitorLed        = new MonitorLed();
+        let data_config        = { object_view_id: this.object_view_id, object_data: JSON.stringify( this )};
+        this.model.insertObject( data_config, this.processQueryResult ); }
 
     logUpdate( message ) {
-        if ( !this.object_id ) {  console.log( "*** ERROR: object needs an id to log. ***" ); return; }
-        if ( message.includes( "ERROR" )) { 
-            this.setLedBackgroundColor( this.monitorLedData.FAIL_COLOR ); 
-            this.setLedTextColor( "white" ); }
+        if ( !this.object_view_id ) {  console.log( "*** ERROR: object needs an id to log. ***" ); return; }
+        if ( message.includes( "ERROR" )) { this.monitorLed.setFail(); }
         this.setLedText( message );
-        const logObject = this.logObjectFactory.createLogObject( message, this );
-        this.logObjects.push( logObject );
+        this.logObjects.push( this.logObjectFactory.createLogObject( message, this                 ));
         let data_config = { object_view_id: this.object_view_id, object_data: JSON.stringify( this )};
         this.model.updateObject( data_config, this.processQueryResult ) }
 
     processQueryResult( _event, results ) { if ( results.data.length > 0 ) { console.log( results.data ); }}
     
-    getMonitorId() { return this.construction_name + "_" + this.object_id; }
-
-    setMonitorId( newId ) { 
-        this.object_id = newId;
-        this.object_view_id = this.construction_name + "_" + newId; 
-        let data_config = { object_view_id: this.object_view_id, object_data: JSON.stringify( this )};
-        this.model.insertObject( data_config, this.processQueryResult ); }
-
-    setLedBackgroundColor( newColor ) { this.monitorLedData.classObject.background_color = newColor; }
-    setLedTextColor(       newColor ) { this.monitorLedData.classObject.color            = newColor; }
-    setLedText(            newText  ) { this.monitorLedData.ledText                      = newText ; }
+    getObjectViewId() { return this.object_view_id; }
 }
