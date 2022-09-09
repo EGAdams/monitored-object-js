@@ -5,7 +5,8 @@ class XhrRunner {
         async run( apiArgs ) {
             const xhr = new XMLHttpRequest();
             xhr.open( "POST", this.url, true );
-            xhr.setRequestHeader( "Content-Type", "application/x-www-form-urlencoded" ); // allows "sql="... syntax!
+            // xhr.setRequestHeader( "Content-Type", "application/x-www-form-urlencoded" ); // allows "sql="... syntax!
+            xhr.setRequestHeader( "Content-Type", "application/json" ); // FAILS for CORS !!!!
             xhr.onreadystatechange = function() {
                 if ( xhr.readyState === 4 && xhr.status === 200 ) {
                     try {
@@ -24,6 +25,6 @@ class XhrRunner {
                     console.log( "xhr.status: " + xhr.status );
                 }
             };
-            xhr.send( /* "sql=" + apiArgs.query */ );
+            xhr.send( JSON.stringify( apiArgs ));
         }
 }
