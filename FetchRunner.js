@@ -5,9 +5,9 @@ class FetchRunner {
         
     async run( apiArgs ) {
         fetch( this.url, {
-            method: "POST",
+            method: apiArgs.type,
             mode:   'no-cors',
-            headers: { 'Content-Type': 'text/plain'},
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify( apiArgs )
         }).then( res => {
             console.log( "processing response: " + res + "..." );
