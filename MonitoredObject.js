@@ -14,9 +14,9 @@ export default class MonitoredObject {
         this.model.insertObject( data_config, this.processQueryResult ); }
 
     logUpdate( message ) {
-        if ( !this.object_view_id ) {  console.log( "*** ERROR: object needs an id to log. ***" ); return; }
+        if ( !this.object_view_id ) {  console.log( "*** ERROR: object needs an id to log. ***" ); return; } 
         if ( message.includes( "ERROR" )) { this.monitorLed.setFail(); }
-        this.setLedText( message );
+        this.monitorLed.setLedText( message );
         this.logObjects.push( this.logObjectFactory.createLogObject( message, this                 ));
         let data_config = { object_view_id: this.object_view_id, object_data: JSON.stringify( this )};
         this.model.updateObject( data_config, this.processQueryResult ) }

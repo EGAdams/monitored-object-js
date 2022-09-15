@@ -1,6 +1,7 @@
 /**
  * @description
- * creates log objects giving them a unique id, time stamp, and determined calling method.
+ * creates log objects giving them a unique id, 
+ * time stamp, and determined calling method.
  *
  * @class LogObjectFactory
  */
@@ -18,9 +19,9 @@
     getCallingMethod() {
         var obj = {};
         Error.captureStackTrace( obj, this.getCallingMethod );
-        if ( obj.stack.split( '\n' )[ 4 ].match( /at\s+\w+.(\w+)/ ) == null ) {
+        if ( obj.stack.split( '\n' )[ 2 ].match( /at\s+\w+.(\w+)/ ) == null ) {
             return 'unknown'; }
-        return obj.stack.split( '\n' )[ 4 ].match( /at\s+\w+.(\w+)/ )[ 1 ];
+        return obj.stack.split( '\n' )[ 2 ].match( /at\s+\w+.(\w+)/ )[ 1 ];
     }
 }
 

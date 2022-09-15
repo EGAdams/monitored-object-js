@@ -16,13 +16,24 @@ export default class SourceData {
     }
 
     /**
-     * gets all objects from the database
+     * selects all objects from the database
      * @param {function} callback The callback to fire upon retrieving data 
      */
-    getObjects( callback ) {
-        let api_path = this.url + "object/select";
+    selectAllObjects( callback ) {
+        let api_path = this.url + "object/selectAll";
         let runner = new this.RunnerObject( api_path );
         let run_config = { type: "GET" }
+        runner.run( run_config, callback );
+    }
+
+    /**
+     * selects one object from the database
+     * @param {function} callback The callback to fire upon retrieving data 
+     */
+    selectObject( data_config, callback ) {
+        let config = { api_path: this.url + "object/select" };
+        let runner = new this.RunnerObject( config );
+        let run_config = { type: "GET", object_view_id: data_config.object_view_id }
         runner.run( run_config, callback );
     }
 
@@ -51,10 +62,10 @@ export default class SourceData {
      * });
      */
     updateObject( data_config, callback ) {
-        let api_path = this.url + "object/update";
-        let runner = new this.RunnerObject( api_path );
+        let config = { api_path: this.url + "object/update" };
+        let runner = new this.RunnerObject( config );
         let run_config = { type: "POST",
                             object_view_id: data_config.object_view_id,
                             object_data:    data_config.object_data };
-        runner( run_config, callback ); }
+        runner.run( run_config, callback ); }
 }

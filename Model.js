@@ -10,11 +10,18 @@
     function Model ( sourceData ) { this.sourceData = sourceData; }
 
     /**
+     * selects one object from the database
+     *
+     * @param { function } [ callback ] The callback to fire after the objects have been retrieved
+     */
+    Model.prototype.selectObject = function ( data_config, callback ) { this.sourceData.selectObject( data_config, callback ); }
+
+    /**
      * Gets all objects from the database
      *
      * @param { function } [ callback ] The callback to fire after the objects have been retrieved
      */
-    Model.prototype.getObjects = function ( callback ) { this.sourceData.getObjects( callback ); }
+    Model.prototype.selectAllObjects = function ( callback ) { this.sourceData.getObjects( callback ); }
 
     /**
      * Will insert an object into the database. 

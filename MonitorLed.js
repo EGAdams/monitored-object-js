@@ -11,7 +11,7 @@ class MonitorLed {
     }
 
     setFail() {  
-        this.setLedBackgroundColor( this.monitorLedData.FAIL_COLOR ); 
+        this.setLedBackgroundColor( this.FAIL_COLOR ); 
         this.setLedTextColor(       "white"                        ); }
 
     setLedBackgroundColor( newColor ) { this.classObject.background_color = newColor; }
