@@ -1,5 +1,4 @@
 /** @class MonitorLedClassObject */
-
 class MonitorLedClassObject {
     constructor() { 
         this.background_color = "lightyellow";

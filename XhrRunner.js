@@ -1,5 +1,5 @@
 /** @class XhrRunner class */
-class XhrRunner {
+export default class XhrRunner {
     constructor( config ) { 
         this.url = config.api_path; } // establish communication address
         async run( apiArgs ) {

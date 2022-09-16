@@ -1,5 +1,5 @@
 /** @class FetchRunner class */
-class FetchRunner {
+export default class FetchRunner {
     constructor( config ) { 
         this.url = config.api_path; 
         this.url_encoded_header = { "Content-Type": "application/x-www-form-urlencoded" };
@@ -22,4 +22,3 @@ class FetchRunner {
 }
 
 // xhr.setRequestHeader( "Content-Type", "application/x-www-form-urlencoded" ); // allows "sql="... syntax!
-

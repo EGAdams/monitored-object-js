@@ -3,16 +3,16 @@ import MonitorLedClassObject from "./MonitorLedClassObject.js";
 
 class MonitorLed {
     constructor() {
-        this.classObject = new MonitorLedClassObject();
-        this.ledText = "ready.";
+        this.classObject   = new MonitorLedClassObject();
+        this.ledText       = "ready.";
         this.RUNNING_COLOR = "lightyellow";
-        this.PASS_COLOR = "lightgreen";
-        this.FAIL_COLOR = "#fb6666"; // lightred is not understood by CSS.  Whaaa... ??
+        this.PASS_COLOR    = "lightgreen";
+        this.FAIL_COLOR    = "#fb6666"; // lightred is not understood by CSS.  Whaaa... ??
     }
 
     setFail() {  
         this.setLedBackgroundColor( this.FAIL_COLOR ); 
-        this.setLedTextColor(       "white"                        ); }
+        this.setLedTextColor(       "white"         ); }
 
     setLedBackgroundColor( newColor ) { this.classObject.background_color = newColor; }
     setLedTextColor(       newColor ) { this.classObject.color            = newColor; }
